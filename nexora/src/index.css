@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: #05060a;
+  }
+  body {
+    margin: 0;
+    background: #05060a;
+    color: #e6e9ef;
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  button,
+  [role='button'],
+  select,
+  input[type='range'] {
+    cursor: pointer;
+  }
+  ::selection {
+    background: rgba(39, 216, 255, 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid #27d8ff;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  .text-gradient {
+    background: linear-gradient(100deg, #ffffff 0%, #8aecff 45%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-stroke {
+    color: transparent;
+    -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.38);
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .eyebrow {
+    font-family: 'Space Grotesk', Inter, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #27d8ff;
+  }
+  .grain::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* price slider */
+  input[type='range'].nx-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    outline: none;
+    background: linear-gradient(90deg, #27d8ff var(--fill, 100%), rgba(255, 255, 255, 0.14) var(--fill, 100%));
+  }
+  input[type='range'].nx-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #27d8ff;
+    box-shadow: 0 0 18px rgba(39, 216, 255, 0.7);
+  }
+  input[type='range'].nx-range::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #27d8ff;
+    box-shadow: 0 0 18px rgba(39, 216, 255, 0.7);
+  }
+
+  /* product card hover layers (colour comes from --accent set on the card) */
+  .pc-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    background:
+      radial-gradient(120% 80% at 50% 0%, color-mix(in srgb, var(--accent) 36%, transparent), transparent 60%),
+      linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.45));
+  }
+  .group:hover .pc-bg {
+    opacity: 1;
+  }
+  .pc-spot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.09), transparent 60%);
+  }
+  .group:hover .pc-spot {
+    opacity: 1;
+  }
+
+  /* category panel visuals */
+  .cat-gaming {
+    background:
+      repeating-linear-gradient(135deg, rgba(39, 216, 255, 0.12) 0 2px, transparent 2px 14px),
+      radial-gradient(at 85% 15%, rgba(39, 216, 255, 0.5), transparent 55%), #061018;
+  }
+  .cat-creator {
+    background:
+      radial-gradient(at 20% 20%, rgba(167, 139, 250, 0.6), transparent 50%),
+      radial-gradient(at 85% 75%, rgba(232, 121, 249, 0.4), transparent 55%), #0d0a18;
+  }
+  .cat-business {
+    background:
+      linear-gradient(rgba(201, 206, 216, 0.07) 1px, transparent 1px) 0 0 / 36px 36px,
+      linear-gradient(90deg, rgba(201, 206, 216, 0.07) 1px, transparent 1px) 0 0 / 36px 36px,
+      radial-gradient(at 80% 20%, rgba(201, 206, 216, 0.22), transparent 55%), #0b0d11;
+  }
+  .cat-student {
+    background:
+      radial-gradient(rgba(45, 212, 191, 0.4) 1.5px, transparent 1.5px) 0 0 / 22px 22px,
+      radial-gradient(at 20% 85%, rgba(45, 212, 191, 0.4), transparent 55%), #061312;
+  }
+  .cat-ultra {
+    background:
+      repeating-radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.09) 0 1px, transparent 1px 24px),
+      radial-gradient(at 15% 15%, rgba(125, 211, 252, 0.4), transparent 55%), #080e14;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
